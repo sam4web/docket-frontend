@@ -7,6 +7,7 @@ export default {
       colors: {
         dark: '#2b2d42',
         light: '#edf2f4',
+        grey: '#8d99ae',
       },
       fontFamily: {
         display: ['Open Sans', 'sans-serif'],

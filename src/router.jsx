@@ -1,5 +1,6 @@
 import BaseLayout from '@/layout/BaseLayout';
 import Home from '@/pages/Home';
+import CreateNote from './pages/CreateNote';
 
 import {
   createBrowserRouter,
@@ -12,6 +13,7 @@ const router = createBrowserRouter(
     <>
       <Route path='/' element={<BaseLayout />}>
         <Route index element={<Home />} />
+        <Route path='create' element={<CreateNote />} />
       </Route>
     </>
   )

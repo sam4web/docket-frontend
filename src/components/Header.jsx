@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <header>
       <section className='flex-between gap-1'>
-        <div className='flex-1 sm:w-full max-w-xs border-2 shadow-sm px-3 py-2 rounded-lg flex-between space-x-2 group hover:border-dark dark:border-light'>
+        <div className='flex-1 sm:w-full max-w-xs border-2 shadow-sm px-3 py-2 rounded-lg flex-between space-x-2 group hover:border-dark dark:border-grey dark:hover:border-grey'>
           <label
             htmlFor='search'
             className='dark:text-light dark:group-focus-within:text-light text-zinc-500 group-focus-within:text-dark text-2xl'
