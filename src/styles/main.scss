@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @import './common/base.scss';
+}
+
+@layer utilities {
+  @import './common/utils.scss';
+}
+
+@layer components {
+  @import './components/header.scss';
+}
