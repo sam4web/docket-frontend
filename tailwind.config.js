@@ -3,7 +3,15 @@ export default {
   darkMode: 'selector',
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        dark: '#2b2d42',
+        light: '#edf2f4',
+      },
+      fontFamily: {
+        display: ['Open Sans', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 };

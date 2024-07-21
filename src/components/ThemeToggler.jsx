@@ -17,15 +17,13 @@ const ThemeToggler = () => {
   }, [theme]);
 
   return (
-    <button className='theme-toggle-btn' onClick={toggleTheme}>
-      <div className='text-xl'>
-        <span className='dark:hidden block'>
-          <FiSun />
-        </span>
-        <span className='dark:block hidden'>
-          <BsFillMoonFill />
-        </span>
-      </div>
+    <button className='btn' onClick={toggleTheme}>
+      <span className='dark:hidden block'>
+        <FiSun />
+      </span>
+      <span className='dark:block hidden'>
+        <BsFillMoonFill />
+      </span>
     </button>
   );
 };
