@@ -23,7 +23,7 @@ const Sidebar = () => {
             docket
           </h2>
         </Link>
-        <div className='flex-center flex-col sm:space-y-5'>
+        <div className='flex-center flex-row-reverse sm:flex-col gap-5'>
           <button
             className={classNames(
               [
@@ -40,7 +40,7 @@ const Sidebar = () => {
 
           <div
             className={classNames([
-              'sm:space-y-4 opacity-0',
+              'flex sm:flex-col gap-2.5 sm:gap-4 opacity-0',
               { 'opacity-100': showColorVariants },
             ])}
           >
