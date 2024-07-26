@@ -9,6 +9,25 @@ body {
   @apply font-display dark:bg-slate-900;
 }
 
+.main-container {
+  @apply px-4 md:px-8 lg:px-16 py-4 lg:py-6 flex-1 space-y-5 md:space-y-10 overflow-hidden;
+}
+
 .btn {
   @apply p-2 border-2 shadow-sm text-xl rounded-md dark:border-grey dark:hover:border-light dark:text-light text-dark hover:border-dark;
+}
+
+input,
+textarea {
+  @apply w-full outline-none bg-transparent  dark:text-light text-dark focus:placeholder:text-transparent;
+}
+
+textarea {
+  &::-webkit-scrollbar {
+    @apply w-1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-dark dark:bg-light rounded-full;
+  }
 }
