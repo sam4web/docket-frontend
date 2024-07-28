@@ -1,4 +1,5 @@
 import { Header, Sidebar } from "@/components";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -6,10 +7,21 @@ const Home = () => {
       <Sidebar />
       <div className="main-container">
         <Header />
-        <h1 className="text-4xl dark:text-light text-dark font-medium">
-          Notes
-        </h1>
-        <section></section>
+        {/* <section>
+          <h1 className="text-4xl text-responsive font-semibold">
+            Notes
+          </h1>
+          <div></div>
+        </section> */}
+
+        <section className="text-center space-y-5 pt-20">
+          <h2 className="text-2xl font-medium text-responsive">
+            No Notes Found
+          </h2>
+          <Link to="/create" className="inline-block">
+            <button className="btn text-lg px-5 py-2.5">Create Note</button>
+          </Link>
+        </section>
       </div>
     </>
   );
