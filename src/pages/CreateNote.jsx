@@ -1,8 +1,10 @@
 import { Header, EditSidebar } from "@/components";
+import usePageTitle from "@/hooks/usePageTitle";
 import { useReducer } from "react";
 import { useLocation } from "react-router-dom";
 
 const CreateNote = () => {
+  usePageTitle("Add a Note | Docket");
   const { state } = useLocation();
   const [note, dispatch] = useReducer(
     (state, action) => ({

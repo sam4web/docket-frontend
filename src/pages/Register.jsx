@@ -1,8 +1,10 @@
 import { Emoji, Header, AuthForm } from "@/components";
+import usePageTitle from "@/hooks/usePageTitle";
 import authStore from "@/stores/authStore";
 import { Link, Navigate } from "react-router-dom";
 
 const Register = () => {
+  usePageTitle("Create Your Account | Docket");
   const { register, loading, error, token } = authStore();
   if (token && !error) return <Navigate to={"/"} />;
 

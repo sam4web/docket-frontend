@@ -1,7 +1,9 @@
 import { Header, Sidebar } from "@/components";
+import usePageTitle from "@/hooks/usePageTitle";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  usePageTitle("Docket | Your Notes, Organized");
   return (
     <>
       <Sidebar />
@@ -18,9 +20,7 @@ const Home = () => {
           <h2 className="text-2xl font-medium text-responsive">
             No Notes Found
           </h2>
-          <Link to="/create" className="inline-block">
-            <button className="btn text-lg px-5 py-2.5">Create Note</button>
-          </Link>
+          <button className="btn text-lg px-5 py-2.5">Create Note</button>
         </section>
       </div>
     </>

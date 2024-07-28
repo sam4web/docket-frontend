@@ -1,21 +1,33 @@
 import BaseLayout from "@/layout/BaseLayout";
-import Home from "@/pages/Home";
-import CreateNote from "@/pages/CreateNote";
-import Login from "@/pages/Login";
-import Register from "@/pages/Register";
-
+import { CreateNote, Home, Login, Profile, Register } from "@/pages";
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
+import AuthRequired from "./AuthRequired";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<BaseLayout />}>
         <Route index element={<Home />} />
-        <Route path="create" element={<CreateNote />} />
+        <Route
+          path="create"
+          element={
+            <AuthRequired>
+              <CreateNote />
+            </AuthRequired>
+          }
+        />
+        <Route
+          path="profile"
+          element={
+            <AuthRequired>
+              <Profile />
+            </AuthRequired>
+          }
+        />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
       </Route>

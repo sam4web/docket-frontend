@@ -6,6 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 const Sidebar = () => {
   const [showColorVariants, setShowColorVariants] = useState(false);
 
+  const toggleColorVariants = () => setShowColorVariants((prev) => !prev);
+
   const colorVariants = [
     { name: "orange", style: "bg-[#ee9b00]" },
     { name: "coral", style: "bg-[#f07167]" },
@@ -29,7 +31,7 @@ const Sidebar = () => {
             className={classNames(["sidebar-btn"], {
               "rotate-90": showColorVariants,
             })}
-            onClick={() => setShowColorVariants((prev) => !prev)}
+            onClick={toggleColorVariants}
           >
             <LuPlus />
           </button>

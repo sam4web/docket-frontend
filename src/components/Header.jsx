@@ -32,7 +32,7 @@ const Header = ({ iconsOnly }) => {
         </div>
 
         <div className="space-x-1 sm:space-x-2.5 flex-between">
-          <Link className="btn" to={"/login"}>
+          <Link className="btn" to={"/profile"}>
             <IoPersonOutline />
           </Link>
           <ThemeToggler />
