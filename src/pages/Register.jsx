@@ -1,13 +1,10 @@
 import { Emoji, Header, AuthForm } from "@/components";
-import { Link } from "react-router-dom";
+import authStore from "@/stores/authStore";
+import { Link, Navigate } from "react-router-dom";
 
 const Register = () => {
-  // const error = { message: "Failed to login, try again" };
-  const error = null;
-
-  const handleSubmit = ({ email, password }) => {
-    console.log(email, password);
-  };
+  const { register, loading, error, token } = authStore();
+  if (token && !error) return <Navigate to={"/"} />;
 
   return (
     <>
@@ -18,7 +15,7 @@ const Register = () => {
             <h1 className="text-4xl text-responsive font-semibold">Sign Up</h1>
             <p className="text-lg">
               {error ? (
-                <span className="error-text">{error.message}</span>
+                <span className="error-text">{error}</span>
               ) : (
                 <span className="text-responsive font-medium">
                   Create your account
@@ -34,7 +31,10 @@ const Register = () => {
             </p>
           </div>
 
-          <AuthForm handleSubmit={handleSubmit} />
+          <AuthForm
+            handleSubmit={(userData) => register(userData)}
+            loading={loading}
+          />
 
           <p className="text-responsive font-medium text-center">
             Have an account?{" "}
@@ -50,3 +50,6 @@ const Register = () => {
 };
 
 export default Register;
+
+// john@example.com
+// P@ssw0rd

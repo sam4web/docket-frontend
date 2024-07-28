@@ -2,7 +2,7 @@ import { validateEmail, validatePassword } from "@/utils/validate";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
-const AuthForm = ({ handleSubmit }) => {
+const AuthForm = ({ handleSubmit, loading }) => {
   const [formData, setFormData] = useState({});
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
@@ -26,7 +26,7 @@ const AuthForm = ({ handleSubmit }) => {
   const submitForm = (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-    handleSubmit({ ...formData });
+    handleSubmit(formData);
   };
 
   return (
@@ -52,6 +52,7 @@ const AuthForm = ({ handleSubmit }) => {
             type={showPassword ? "text" : "password"}
             id="password"
             name="password"
+            placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
             onChange={handleChange}
             value={formData.password || ""}
             autoComplete="on"
@@ -74,8 +75,8 @@ const AuthForm = ({ handleSubmit }) => {
         <p className="error-text">{errors.password}</p>
       </div>
 
-      <button className="btn text-lg px-5" type="submit">
-        Submit
+      <button className="btn text-lg px-5" type="submit" disabled={loading}>
+        {loading ? "Submitting" : "Submit"}
       </button>
     </form>
   );
