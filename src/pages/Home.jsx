@@ -7,12 +7,12 @@ const Home = () => {
       <Sidebar />
       <div className="main-container">
         <Header />
-        {/* <section>
-          <h1 className="text-4xl text-responsive font-semibold">
-            Notes
-          </h1>
+        {/* 
+        <section>
+          <h1 className="text-4xl text-responsive font-semibold">Notes</h1>
           <div></div>
-        </section> */}
+        </section>
+        */}
 
         <section className="text-center space-y-5 pt-20">
           <h2 className="text-2xl font-medium text-responsive">
