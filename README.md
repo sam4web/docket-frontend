@@ -45,6 +45,6 @@ Docket is a note-taking application that allows users to create, read, update, a
 - **Delete**: Click on the "Delete" button to remove a note.
 
 ## Links
-- Source Code: [Frontend Repository](https://github.com/sam4web/docket-frontend)
-- Live Preview: [Docket Live]()
-- Backend Code: [Backend Repository](https://github.com/sam4web/docket-backend)
+- **Source Code**: [Frontend Repository](https://github.com/sam4web/docket-frontend)
+- **Live Preview**: [Docket Live]()
+- **Backend Code**: [Backend Repository](https://github.com/sam4web/docket-backend)
