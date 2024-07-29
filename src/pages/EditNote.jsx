@@ -1,14 +1,13 @@
-import { Header, EditSidebar } from "@/components";
-import usePageTitle from "@/hooks/usePageTitle";
+import { EditSidebar, Header } from "@/components";
 import noteStore from "@/stores/noteStore";
-import { useReducer } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useReducer } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-const CreateNote = () => {
-  usePageTitle("Add a Note | Docket");
-  const { state } = useLocation();
-  const { createNote } = noteStore();
+const EditNote = () => {
+  const { id } = useParams();
+  const { currentNote, fetchNote, updateNote, deleteNote } = noteStore();
   const navigate = useNavigate();
+
   const [note, dispatch] = useReducer(
     (state, action) => ({
       ...state,
@@ -17,23 +16,36 @@ const CreateNote = () => {
     { title: "", body: "" }
   );
 
-  const handleSubmit = () => {
-    createNote({ ...note, style: state.style });
-    navigate("/");
-  };
+  useEffect(() => {
+    fetchNote(id);
+  }, [fetchNote]);
+
+  useEffect(() => {
+    dispatch({ ...currentNote });
+  }, [currentNote.title, currentNote.body]);
 
   return (
     <>
       <EditSidebar
         eraseNote={() => dispatch({ title: "", body: "" })}
-        submitNote={handleSubmit}
+        submitNote={() => {
+          updateNote(note);
+          navigate(`/notes/${id}`);
+        }}
+        deleteNote={() => {
+          deleteNote(note);
+          navigate("/");
+        }}
       />
+
       <div className="main-container">
         <Header iconsOnly />
         <section className="space-y-3.5">
           <div className="flex gap-2">
             <div
-              className={`w-1.5 rounded-full ${state?.style || "bg-grey"} `}
+              className={`w-1.5 rounded-full ${
+                currentNote.style || "bg-grey"
+              } `}
             ></div>
             <input
               className="note-title text-4xl font-medium"
@@ -46,10 +58,10 @@ const CreateNote = () => {
             placeholder="Enter your text here..."
             className="h-[65vh] text-lg resize-none pe-4 note-message"
             value={note.body}
-            onChange={(e) => dispatch({ body: e.target.value })}
             autoCapitalize="off"
             autoCorrect="off"
             spellCheck="off"
+            onChange={(e) => dispatch({ body: e.target.value })}
           />
         </section>
       </div>
@@ -57,4 +69,4 @@ const CreateNote = () => {
   );
 };
 
-export default CreateNote;
+export default EditNote;

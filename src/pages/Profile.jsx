@@ -42,11 +42,15 @@ const Profile = () => {
           <div className="bg-slate-100 dark:bg-slate-700 px-5 py-3.5 rounded-md space-y-2.5 shadow-sm">
             <div className="flex-between">
               <p className="font-medium">Password</p>
-              <p className="text-blue-600 cursor-pointer">Change Password</p>
+              <p className="text-blue-600 dark:text-blue-500 cursor-pointer">
+                Change Password
+              </p>
             </div>
             <div className="flex-between">
               <p className="font-medium">Manage Account</p>
-              <p className="text-red-600 cursor-pointer">Delete</p>
+              <p className="text-red-600 dark:text-red-500 cursor-pointer">
+                Delete
+              </p>
             </div>
           </div>
 

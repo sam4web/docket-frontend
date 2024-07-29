@@ -1,21 +1,11 @@
+import colorStore from "@/stores/colorStore";
 import classNames from "classnames";
-import { useState } from "react";
 import { LuPlus } from "react-icons/lu";
 import { Link, useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
-  const [showColorVariants, setShowColorVariants] = useState(false);
-
-  const toggleColorVariants = () => setShowColorVariants((prev) => !prev);
-
-  const colorVariants = [
-    { name: "orange", style: "bg-[#ee9b00]" },
-    { name: "coral", style: "bg-[#f07167]" },
-    { name: "blue", style: "bg-[#90e0ef]" },
-    { name: "lime", style: "bg-[#a7c957]" },
-    { name: "purple", style: "bg-[#a06cd5]" },
-  ];
-
+  const { colorVariants, showColorVariants, toggleColorVariants } =
+    colorStore();
   const navigate = useNavigate();
 
   return (
@@ -47,7 +37,9 @@ const Sidebar = () => {
                   <button
                     key={item.name}
                     className={`size-5 rounded-full block ${item.style}`}
-                    onClick={() => navigate("/create", { state: { ...item } })}
+                    onClick={() =>
+                      navigate("/notes/create", { state: { ...item } })
+                    }
                   ></button>
                 ))
               : ""}

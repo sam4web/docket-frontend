@@ -1,5 +1,14 @@
 import BaseLayout from "@/layout/BaseLayout";
-import { CreateNote, Home, Login, Profile, Register } from "@/pages";
+import {
+  CreateNote,
+  Home,
+  Login,
+  NotFound,
+  Profile,
+  Register,
+  Note,
+  EditNote,
+} from "@/pages";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -13,10 +22,26 @@ const router = createBrowserRouter(
       <Route path="/" element={<BaseLayout />}>
         <Route index element={<Home />} />
         <Route
-          path="create"
+          path="notes/create"
           element={
             <AuthRequired>
               <CreateNote />
+            </AuthRequired>
+          }
+        />
+        <Route
+          path="notes/:id"
+          element={
+            <AuthRequired>
+              <Note />
+            </AuthRequired>
+          }
+        />
+        <Route
+          path="notes/edit/:id"
+          element={
+            <AuthRequired>
+              <EditNote />
             </AuthRequired>
           }
         />
@@ -30,6 +55,7 @@ const router = createBrowserRouter(
         />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </>
   )
