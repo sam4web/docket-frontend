@@ -1,6 +1,6 @@
 # Docket Frontend
 
-Docket is a note-taking application that allows users to create, read, update, and delete notes with authentication. This repository contains the frontend code built using modern web technologies.
+Web application built with React.js, TailwindCSS, Zustand, and React Router DOM, designed for creating, viewing, updating, and deleting notes. It features user authentication and a responsive user interface, providing an intuitive and seamless experience for managing notes. The application integrates with the Docket backend API for data handling and user management.
 
 ## Table of Contents
 
