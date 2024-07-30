@@ -29,7 +29,7 @@ const Home = () => {
       <div className="main-container">
         <Header />
 
-        {notes.length === 0 ? (
+        {notes === undefined || notes.length == 0 ? (
           <section className="text-center space-y-5 pt-20">
             <h2 className="text-2xl font-medium text-responsive">
               No Notes Found

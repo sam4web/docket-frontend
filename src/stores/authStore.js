@@ -28,7 +28,7 @@ const authStore = create((set) => ({
   register: async (userData) => {
     set({ loading: true, error: null });
     try {
-      const response = await axios.post(`${SERVER_URL}/register`, userData);
+      const response = await axios.post(`${SERVER_URL}/api/register`, userData);
       const data = response.data;
       localStorage.setItem("token", data.token);
       axios.defaults.headers.common["x-auth-token"] = data.token;

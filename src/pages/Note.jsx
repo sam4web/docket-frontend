@@ -11,7 +11,7 @@ const Note = () => {
 
   useEffect(() => {
     fetchNote(id);
-  }, [fetchNote, id, note]);
+  }, [id]);
 
   return (
     <>
