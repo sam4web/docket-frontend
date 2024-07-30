@@ -53,7 +53,7 @@ const Home = () => {
                   <div className="font-medium flex flex-col justify-between h-full p-5">
                     <Link className="space-y-1.5" to={`/notes/${note._id}`}>
                       <h4 className="text-xl text-responsive">{note.title}</h4>
-                      <p className="text-slate-900 dark:text-slate-200">
+                      <p className="text-slate-900 dark:text-slate-200 whitespace-pre-line">
                         {formatBody(note.body)}
                       </p>
                     </Link>
