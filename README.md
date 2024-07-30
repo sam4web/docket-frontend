@@ -46,5 +46,5 @@ Web application built with React.js, TailwindCSS, Zustand, and React Router DOM,
 
 ## Links
 - **Source Code**: [Frontend Repository](https://github.com/sam4web/docket-frontend)
-- **Live Preview**: [Docket Live]()
+- **Live Preview**: [Docket Live](https://projectdocket.netlify.app/)
 - **Backend Code**: [Backend Repository](https://github.com/sam4web/docket-backend)
