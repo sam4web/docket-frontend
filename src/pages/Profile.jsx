@@ -1,7 +1,7 @@
 import formatDate from "@/utils/formatDate";
-import Sidebar from "@/components/Sidebar.jsx";
-import Header from "@/components/Header.jsx";
-import Emoji from "@/components/Emoji.jsx";
+import Sidebar from "@/components/sidebar/Sidebar.jsx";
+import Header from "@/components/header/Header.jsx";
+import Emoji from "@/components/common/Emoji.jsx";
 
 
 const Profile = () => {

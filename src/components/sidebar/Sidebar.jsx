@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { LuPlus } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import LogoText from "@/components/LogoText.jsx";
+import LogoText from "@/components/header/LogoText.jsx";
 
 const Sidebar = () => {
   const navigate = useNavigate();

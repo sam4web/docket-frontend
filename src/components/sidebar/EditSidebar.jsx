@@ -1,5 +1,5 @@
 import { LuCheck, LuEraser, LuPencil, LuTrash } from "react-icons/lu";
-import LogoText from "@/components/LogoText.jsx";
+import LogoText from "@/components/header/LogoText.jsx";
 
 const EditSidebar = ({ eraseNote, submitNote, editNote, deleteNote }) => {
   return (

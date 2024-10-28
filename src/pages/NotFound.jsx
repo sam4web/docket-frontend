@@ -1,7 +1,7 @@
 import usePageTitle from "@/hooks/usePageTitle";
 import { Link } from "react-router-dom";
-import Header from "@/components/Header.jsx";
-import Emoji from "@/components/Emoji.jsx";
+import Header from "@/components/header/Header.jsx";
+import Emoji from "@/components/common/Emoji.jsx";
 
 const NotFound = () => {
   usePageTitle("Page Not Found | Docket");

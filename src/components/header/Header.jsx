@@ -1,7 +1,7 @@
 import { IoArrowBack, IoPersonOutline } from "react-icons/io5";
 import ThemeToggle from "./ThemeToggle.jsx";
 import { Link, useNavigate } from "react-router-dom";
-import SearchBox from "@/components/SearchBox.jsx";
+import SearchBox from "@/components/header/SearchBox.jsx";
 
 const Header = ({ iconsOnly }) => {
   const navigate = useNavigate();

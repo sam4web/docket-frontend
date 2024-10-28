@@ -1,8 +1,8 @@
 import usePageTitle from "@/hooks/usePageTitle";
 import { Link } from "react-router-dom";
-import Header from "@/components/Header.jsx";
-import Emoji from "@/components/Emoji.jsx";
-import AuthForm from "@/components/AuthForm.jsx";
+import Header from "@/components/header/Header.jsx";
+import Emoji from "@/components/common/Emoji.jsx";
+import AuthForm from "@/components/form/AuthForm.jsx";
 
 const Login = () => {
   usePageTitle("Welcome Back | Docket");

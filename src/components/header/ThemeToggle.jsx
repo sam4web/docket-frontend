@@ -1,4 +1,4 @@
-import useThemeDetector from "@/hooks/useThemeDetector";
+import useThemeDetector from "@/hooks/useThemeDetector.js";
 import { useEffect, useState } from "react";
 import { BsFillMoonFill } from "react-icons/bs";
 import { FiSun } from "react-icons/fi";

@@ -1,7 +1,7 @@
 import formatDate from "@/utils/formatDate";
 import { useNavigate, useParams } from "react-router-dom";
-import EditSidebar from "@/components/EditSidebar.jsx";
-import Header from "@/components/Header.jsx";
+import EditSidebar from "@/components/sidebar/EditSidebar.jsx";
+import Header from "@/components/header/Header.jsx";
 
 const NoteDetail = () => {
   const { id } = useParams();

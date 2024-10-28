@@ -4,9 +4,9 @@ import Home from "@/pages/Home.jsx";
 import NotFound from "@/pages/NotFound.jsx";
 import Login from "@/pages/Login.jsx";
 import Register from "@/pages/Register.jsx";
-import CreateNote from "@/pages/note/CreateNote.jsx";
-import EditNote from "@/pages/note/EditNote.jsx";
-import NoteDetail from "@/pages/note/NoteDetail.jsx";
+import CreateNote from "@/pages/notes/CreateNote.jsx";
+import EditNote from "@/pages/notes/EditNote.jsx";
+import NoteDetail from "@/pages/notes/NoteDetail.jsx";
 import Profile from "@/pages/Profile.jsx";
 
 const router = createBrowserRouter(createRoutesFromElements(
