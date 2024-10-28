@@ -1,9 +1,12 @@
 import classNames from "classnames";
 import { LuPlus } from "react-icons/lu";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import LogoText from "@/components/LogoText.jsx";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
   const [showColorVariants, setShowColorVariants] = useState(true);
   const toggleColorVariants = () => setShowColorVariants(prev => !prev);
 
@@ -20,11 +23,7 @@ const Sidebar = () => {
   return (
     <section className="px-4 py-4 lg:py-6 border-transparent border-r dark:border-slate-700 border-zinc-300">
       <div className="sm:space-y-9 sm:block flex-between">
-        <Link to="/">
-          <h2 className="text-xl font-medium text-responsive select-none cursor-pointer">
-            docket
-          </h2>
-        </Link>
+        <LogoText />
         <div className="flex-center flex-row-reverse sm:flex-col gap-5">
           <button
             className={classNames(["sidebar-btn"], {
@@ -46,7 +45,7 @@ const Sidebar = () => {
                 <button
                   key={idx}
                   className={`size-5 rounded-full block ${color}`}
-                  onClick={() => console.log(color)}
+                  onClick={() => navigate("/notes/create", { state: { style: color } })}
                 ></button>
               ))
             }
