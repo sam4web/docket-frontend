@@ -43,9 +43,30 @@
 }
 
 .btn {
-  @apply p-2 inline-block border-2 shadow-sm text-xl rounded-md dark:border-grey dark:hover:border-light text-responsive hover:border-gray-700 font-medium disabled:opacity-80 disabled:bg-gray-200 disabled:border-transparent dark:disabled:bg-gray-700;
+  @apply p-2 inline-block border-2 shadow-sm text-xl rounded-md dark:border-grey dark:hover:border-light text-responsive hover:border-gray-700 font-medium disabled:opacity-80 disabled:bg-gray-200 disabled:border-transparent dark:disabled:bg-gray-700 disabled:cursor-not-allowed;
 }
 
 .sidebar-btn {
   @apply bg-dark text-light text-lg sm:text-2xl p-2 rounded-full shadow-sm border-2 border-light dark:border-grey;
+}
+
+.orange {
+  @apply bg-[#ee9b00]
+}
+
+.coral {
+  @apply bg-[#f07167]
+}
+
+.blue {
+  @apply bg-[#90e0ef]
+}
+
+
+.lime {
+  @apply bg-[#a7c957]
+}
+
+.purple {
+  @apply bg-[#a06cd5]
 }

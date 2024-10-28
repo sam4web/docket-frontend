@@ -7,13 +7,15 @@ const Sidebar = () => {
   const [showColorVariants, setShowColorVariants] = useState(true);
   const toggleColorVariants = () => setShowColorVariants(prev => !prev);
 
+
   const colorVariants = [
-    { name: "orange", style: "bg-[#ee9b00]" },
-    { name: "coral", style: "bg-[#f07167]" },
-    { name: "blue", style: "bg-[#90e0ef]" },
-    { name: "lime", style: "bg-[#a7c957]" },
-    { name: "purple", style: "bg-[#a06cd5]" },
+    "orange",
+    "coral",
+    "blue",
+    "lime",
+    "purple",
   ];
+
 
   return (
     <section className="px-4 py-4 lg:py-6 border-transparent border-r dark:border-slate-700 border-zinc-300">
@@ -40,11 +42,11 @@ const Sidebar = () => {
             ])}
           >
             {showColorVariants
-              && colorVariants.map((item) => (
+              && colorVariants.map((color, idx) => (
                 <button
-                  key={item.name}
-                  className={`size-5 rounded-full block ${item.style}`}
-                  onClick={() => console.log(item.name)}
+                  key={idx}
+                  className={`size-5 rounded-full block ${color}`}
+                  onClick={() => console.log(color)}
                 ></button>
               ))
             }

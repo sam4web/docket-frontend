@@ -5,13 +5,13 @@
 @tailwind utilities;
 
 @layer base {
-  @import "./base.scss";
+  @import "base.scss";
 }
 
 @layer utilities {
-  @import "./utils.scss";
+  @import "utils.scss";
 }
 
 @layer components {
-  @import "./components.scss";
+  @import "components.scss";
 }
