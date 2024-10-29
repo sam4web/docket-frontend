@@ -2,8 +2,7 @@ import dayjs from "dayjs";
 
 const formatDate = (date) => {
   const dt = dayjs(date);
-  const formatted = dt.format("MMM DD, YYYY");
-  return formatted;
+  return dt.format("MMM DD, YYYY");
 };
 
 export default formatDate;

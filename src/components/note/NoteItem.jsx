@@ -2,12 +2,14 @@ import { Link, useNavigate } from "react-router-dom";
 import formatDate from "@/utils/formatDate.js";
 import { LuPencil } from "react-icons/lu";
 import { useSelector } from "react-redux";
-import { selectNoteById } from "@/features/note/noteApiSlice.js";
+import { selectNoteById } from "@/features/note/noteSlice.js";
 
 const NoteItem = ({ noteId }) => {
   const navigate = useNavigate();
 
-  const note = useSelector(state => selectNoteById(state, noteId));
+  const note = useSelector((state) => selectNoteById(state, noteId));
+
+  console.log(note);
 
   const formatBody = (body) => {
     const maxLength = 200;
@@ -18,7 +20,8 @@ const NoteItem = ({ noteId }) => {
 
   return (
     <div
-      className={`${note.style} dark:bg-opacity-70 size-full min-h-64 rounded-md shadow-md`}
+      className="dark:bg-opacity-70 size-full min-h-64 rounded-md shadow-md"
+      style={{ backgroundColor: note.color }}
     >
       <div className="font-medium flex flex-col justify-between h-full p-5">
         <Link className="space-y-1.5" to={`/notes/${note._id}`}>

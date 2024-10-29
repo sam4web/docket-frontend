@@ -1,20 +1,16 @@
 import { RouterProvider } from "react-router-dom";
 import router from "@/routes/router.jsx";
-import { useEffect } from "react";
-import { noteApiSlice } from "@/features/note/noteApiSlice.js";
 import { store } from "@/app/store.js";
+import { fetchAllNotes } from "@/features/note/noteThunks.js";
+import { useEffect } from "react";
 
 
 const App = () => {
 
   useEffect(() => {
-    const notes = store.dispatch(noteApiSlice.endpoints.getAllNotes.initiate());
+    store.dispatch(fetchAllNotes());
 
-    return () => {
-      notes.unsubscribe();
-    };
-  }, []);
-
+  });
   return <RouterProvider router={router} />;
 };
 

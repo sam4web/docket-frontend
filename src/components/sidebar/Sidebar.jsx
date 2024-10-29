@@ -12,11 +12,11 @@ const Sidebar = () => {
 
 
   const colorVariants = [
-    "orange",
-    "coral",
-    "blue",
-    "lime",
-    "purple",
+    "#ee9b00",
+    "#f07167",
+    "#90e0ef",
+    "#a7c957",
+    "#a06cd5",
   ];
 
 
@@ -44,8 +44,9 @@ const Sidebar = () => {
               && colorVariants.map((color, idx) => (
                 <button
                   key={idx}
-                  className={`size-5 rounded-full block ${color}`}
-                  onClick={() => navigate("/notes/create", { state: { style: color } })}
+                  className="size-5 rounded-full block"
+                  style={{ backgroundColor: color }}
+                  onClick={() => navigate("/notes/create", { state: { color } })}
                 ></button>
               ))
             }
