@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchAllNotes } from "@/features/note/noteThunks.js";
+import { deleteNoteQuery, editNoteQuery, fetchAllNotes } from "@/features/note/noteThunks.js";
 
 const initialState = {
   notes: [],
@@ -15,7 +15,7 @@ const noteSlice = createSlice({
     builder
       .addCase(fetchAllNotes.fulfilled, (state, action) => {
         state.status = "success";
-        state.notes = action.payload;
+        state.notes = action.payload.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
       })
       .addCase(fetchAllNotes.pending, (state, action) => {
         state.status = "loading";
@@ -24,6 +24,14 @@ const noteSlice = createSlice({
       .addCase(fetchAllNotes.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
+      })
+      .addCase(editNoteQuery.fulfilled, (state, action) => {
+        const updatedNote = { ...action.payload };
+        state.notes = state.notes.filter(note => note._id !== updatedNote._id);
+        state.notes.unshift(updatedNote);
+      })
+      .addCase(deleteNoteQuery.fulfilled, (state, action) => {
+        state.notes = state.notes.filter(note => note._id !== action.payload);
       });
   },
 });

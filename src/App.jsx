@@ -6,12 +6,12 @@ import { useEffect } from "react";
 
 
 const App = () => {
-
   useEffect(() => {
     store.dispatch(fetchAllNotes());
-
   });
+
   return <RouterProvider router={router} />;
 };
+
 
 export default App;
