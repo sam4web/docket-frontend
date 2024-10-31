@@ -23,7 +23,6 @@ const NoteDetail = () => {
                 className="w-1.5 rounded-full"
                 style={{ backgroundColor: note?.color }}
               />
-
               <h3 className="note-title text-4xl font-medium">{note?.title}</h3>
             </div>
             <p className="text-slate-900 dark:text-slate-200 font-medium">

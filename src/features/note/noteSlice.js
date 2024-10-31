@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { deleteNoteQuery, editNoteQuery, fetchAllNotes } from "@/features/note/noteThunks.js";
+import { createNoteEntry, deleteNoteRequest, fetchNotesQuery, updateNoteRecord } from "@/features/note/noteThunks.js";
 
 const initialState = {
   notes: [],
@@ -13,26 +13,28 @@ const noteSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllNotes.fulfilled, (state, action) => {
+      .addCase(fetchNotesQuery.fulfilled, (state, action) => {
         state.status = "success";
         state.notes = action.payload.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
       })
-      .addCase(fetchAllNotes.pending, (state, action) => {
+      .addCase(fetchNotesQuery.pending, (state, action) => {
         state.status = "loading";
         state.error = null;
       })
-      .addCase(fetchAllNotes.rejected, (state, action) => {
+      .addCase(fetchNotesQuery.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
       })
-      .addCase(editNoteQuery.fulfilled, (state, action) => {
+      .addCase(updateNoteRecord.fulfilled, (state, action) => {
         const updatedNote = { ...action.payload };
         state.notes = state.notes.filter(note => note._id !== updatedNote._id);
         state.notes.unshift(updatedNote);
       })
-      .addCase(deleteNoteQuery.fulfilled, (state, action) => {
+      .addCase(deleteNoteRequest.fulfilled, (state, action) => {
         state.notes = state.notes.filter(note => note._id !== action.payload);
-      });
+      }).addCase(createNoteEntry.fulfilled, (state, action) => {
+      state.notes.unshift(action.payload);
+    });
   },
 });
 

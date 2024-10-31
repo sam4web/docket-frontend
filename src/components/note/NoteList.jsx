@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import Spinner from "@/components/common/Spinner.jsx";
-import Emoji from "@/components/common/Emoji.jsx";
 import { useSelector } from "react-redux";
 import { getNoteError, getNoteStatus, selectAllNotes } from "@/features/note/noteSlice.js";
 import NoteItem from "@/components/note/NoteItem.jsx";
+import ErrorText from "@/components/common/ErrorText.jsx";
 
 
 const NoteList = () => {
@@ -20,11 +20,8 @@ const NoteList = () => {
       </section>
     );
 
-  if (status === "failed") return (
-    <section className="text-center pt-20 space-x-2 text-2xl">
-      <span className="error-text font-medium">{error}</span>
-      <Emoji label={"warning"} symbol={"⚠️"} />
-    </section>);
+  if (status === "failed") return <ErrorText error={error} />;
+
 
   if (!notes.length)
     return (

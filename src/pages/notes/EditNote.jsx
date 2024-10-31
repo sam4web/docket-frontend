@@ -5,7 +5,7 @@ import Header from "@/components/header/Header.jsx";
 import ErrorText from "@/components/common/ErrorText.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { selectNoteById } from "@/features/note/noteSlice.js";
-import { deleteNoteQuery, editNoteQuery } from "@/features/note/noteThunks.js";
+import { deleteNoteRequest, updateNoteRecord } from "@/features/note/noteThunks.js";
 
 const EditNote = () => {
   const { id: noteId } = useParams();
@@ -28,7 +28,7 @@ const EditNote = () => {
 
   const updateNote = async () => {
     try {
-      await dispatch(editNoteQuery({ ...noteState, id: noteId })).unwrap();
+      await dispatch(updateNoteRecord({ ...noteState, id: noteId })).unwrap();
       navigate(`/notes/${noteId}`);
     } catch (err) {
       noteDispatch({ error: err });
@@ -37,7 +37,7 @@ const EditNote = () => {
 
   const deleteNote = async () => {
     try {
-      await dispatch(deleteNoteQuery(noteId)).unwrap();
+      await dispatch(deleteNoteRequest(noteId)).unwrap();
       navigate("/");
     } catch (err) {
       noteDispatch({ error: err });
@@ -59,8 +59,9 @@ const EditNote = () => {
           {noteState.error && <ErrorText error={noteState.error} />}
           <div className="flex gap-2">
             <div
-              className={`w-1.5 rounded-full ${"bg-grey"} `}
-            ></div>
+              className="w-1.5 rounded-full"
+              style={{ backgroundColor: note?.color }}
+            />
             <input
               className="note-title text-4xl font-medium"
               placeholder="Note title..."
