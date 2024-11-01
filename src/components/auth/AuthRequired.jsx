@@ -11,7 +11,7 @@ const AuthRequired = () => {
     <Navigate
       to={"/login"}
       replace={true}
-      state={{ to: location.pathname, errorMessage: "Unauthorized" }} />
+      state={{ redirect: location.pathname, error: "Unauthorized" }} />
   );
 
   return <Outlet />;

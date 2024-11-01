@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import api from "@/api/apiInstance.js";
+import api from "@/api/axiosInstance.js";
 
 
 export const fetchNotesQuery = createAsyncThunk("notes/fetchAllNotes", async (_, { rejectWithValue }) => {

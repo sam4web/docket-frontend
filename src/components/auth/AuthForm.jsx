@@ -15,7 +15,7 @@ const AuthForm = ({ handleSubmit, register }) => {
     const newErrors = {};
     const emailValid = validateEmail(formData?.email || "");
     const passValid = validatePassword(formData?.password || "");
-    if (!formData?.username) newErrors.username = "Username is required!";
+    if (register && !formData?.username) newErrors.username = "Username is required!";
     if (!emailValid.isValid) newErrors.email = emailValid.message;
     if (!passValid.isValid) newErrors.password = passValid.message;
     setErrors(newErrors);
@@ -33,7 +33,7 @@ const AuthForm = ({ handleSubmit, register }) => {
     handleSubmit(formData);
   };
 
-  const canSubmit = ![formData?.email, formData?.password, register ? formData?.username : true].every(Boolean);
+  const canSubmit = [formData?.email, formData?.password, register ? formData?.username : true].every(Boolean);
 
   return (
     <form className="space-y-5 sm:space-y-6" onSubmit={submitForm} noValidate>
@@ -95,7 +95,7 @@ const AuthForm = ({ handleSubmit, register }) => {
         <p className="error-message">{errors?.password}</p>
       </div>
 
-      <button className="btn text-lg px-5" type="submit" disabled={canSubmit}>
+      <button className="btn text-lg px-5" type="submit" disabled={!canSubmit}>
         Submit
       </button>
     </form>
