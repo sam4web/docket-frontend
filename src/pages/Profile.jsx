@@ -2,17 +2,12 @@ import formatDate from "@/utils/formatDate";
 import Sidebar from "@/components/sidebar/Sidebar.jsx";
 import Header from "@/components/header/Header.jsx";
 import Emoji from "@/components/common/Emoji.jsx";
+import { useSelector } from "react-redux";
+import { getUserInfo } from "@/features/user/userSlice.js";
 
 
 const Profile = () => {
-
-  // demo user data
-  const user = {
-    "username": "John",
-    "email": "john@example.com",
-    "createdAt": "2024-10-28T09:53:08.905Z",
-    "updatedAt": "2024-10-28T10:32:52.358Z",
-  };
+  const user = useSelector(getUserInfo);
 
   return (
     <>
