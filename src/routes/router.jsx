@@ -8,6 +8,7 @@ import CreateNote from "@/pages/notes/CreateNote.jsx";
 import EditNote from "@/pages/notes/EditNote.jsx";
 import NoteDetail from "@/pages/notes/NoteDetail.jsx";
 import Profile from "@/pages/Profile.jsx";
+import AuthRequired from "@/components/auth/AuthRequired.jsx";
 
 const router = createBrowserRouter(createRoutesFromElements(
   <>
@@ -15,12 +16,15 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route index element={<Home />} />
       <Route path={"/login"} element={<Login />} />
       <Route path={"/register"} element={<Register />} />
-      <Route path={"/profile"} element={<Profile />} />
-      <Route path={"/notes"}>
-        <Route index element={<Home />} />
-        <Route path={":id"} element={<NoteDetail />} />
-        <Route path={"create"} element={<CreateNote />} />
-        <Route path={"edit/:id"} element={<EditNote />} />
+      {/* protected routes */}
+      <Route element={<AuthRequired />}>
+        <Route path={"/profile"} element={<Profile />} />
+        <Route path={"/notes"}>
+          <Route index element={<Home />} />
+          <Route path={":id"} element={<NoteDetail />} />
+          <Route path={"create"} element={<CreateNote />} />
+          <Route path={"edit/:id"} element={<EditNote />} />
+        </Route>
       </Route>
       <Route path={"*"} element={<NotFound />} />
     </Route>

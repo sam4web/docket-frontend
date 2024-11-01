@@ -2,7 +2,7 @@ import usePageTitle from "@/hooks/usePageTitle";
 import { Link } from "react-router-dom";
 import Header from "@/components/header/Header.jsx";
 import Emoji from "@/components/common/Emoji.jsx";
-import AuthForm from "@/components/form/AuthForm.jsx";
+import AuthForm from "@/components/auth/AuthForm.jsx";
 
 const Register = () => {
   usePageTitle("Create Your Account | Docket");
@@ -11,7 +11,7 @@ const Register = () => {
     <>
       <div className="main-container">
         <Header iconsOnly />
-        <section className="max-w-md mx-auto space-y-5 sm:space-y-10 pt-16 sm:pt-20">
+        <section className="max-w-md mx-auto space-y-5 sm:space-y-7 pt-16 sm:pt-20">
           <div className="space-y-3">
             <h1 className="text-4xl text-responsive font-semibold">Sign Up</h1>
             <p className="text-lg">
@@ -25,6 +25,7 @@ const Register = () => {
           </div>
 
           <AuthForm
+            register
             handleSubmit={(userData) => console.log(userData)}
           />
 

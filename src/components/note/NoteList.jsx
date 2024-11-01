@@ -4,10 +4,13 @@ import { useSelector } from "react-redux";
 import { getNoteError, getNoteStatus, selectAllNotes } from "@/features/note/noteSlice.js";
 import NoteItem from "@/components/note/NoteItem.jsx";
 import ErrorText from "@/components/common/ErrorText.jsx";
+import { getToken } from "@/features/user/userSlice.js";
 
 
 const NoteList = () => {
   const navigate = useNavigate();
+
+  const token = useSelector(getToken);
 
   const notes = useSelector(selectAllNotes);
   const status = useSelector(getNoteStatus);
@@ -20,10 +23,7 @@ const NoteList = () => {
       </section>
     );
 
-  if (status === "failed") return <ErrorText error={error} />;
-
-
-  if (!notes.length)
+  if (!notes.length || !token)
     return (
       <section className="text-center space-y-7 md:space-y-10 pt-20">
         <h2 className="text-3xl md:text-4xl font-medium text-responsive">
@@ -36,6 +36,9 @@ const NoteList = () => {
         </button>
       </section>
     );
+
+  if (status === "failed") return <ErrorText error={error} />;
+
 
   return (
     <section className="space-y-6">

@@ -1,20 +1,25 @@
 import { validateEmail, validatePassword } from "@/utils/validateCredentials.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
-const AuthForm = ({ handleSubmit }) => {
-  const [formData, setFormData] = useState({});
+const AuthForm = ({ handleSubmit, register }) => {
+  const [formData, setFormData] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState(null);
+
+  useEffect(() => {
+    setErrors({});
+  }, [formData]);
 
   const validateForm = () => {
     const newErrors = {};
-    const emailValid = validateEmail(formData.email || "");
-    const passValid = validatePassword(formData.password || "");
+    const emailValid = validateEmail(formData?.email || "");
+    const passValid = validatePassword(formData?.password || "");
+    if (!formData?.username) newErrors.username = "Username is required!";
     if (!emailValid.isValid) newErrors.email = emailValid.message;
     if (!passValid.isValid) newErrors.password = passValid.message;
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return Object.keys(newErrors).length === 0 && canSubmit;
   };
 
   const handleChange = (e) => {
@@ -28,26 +33,42 @@ const AuthForm = ({ handleSubmit }) => {
     handleSubmit(formData);
   };
 
-  const canSubmit = ![formData.email, formData.password].every(Boolean);
+  const canSubmit = ![formData?.email, formData?.password, register ? formData?.username : true].every(Boolean);
 
   return (
-    <form className="space-y-6" onSubmit={submitForm} noValidate>
+    <form className="space-y-5 sm:space-y-6" onSubmit={submitForm} noValidate>
+      {register &&
+        <div className="input-container">
+          <label htmlFor="username">Username: </label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="john"
+            value={formData?.username || ""}
+            onChange={handleChange}
+            autoComplete="on"
+          />
+          <p className="error-message">{errors?.username}</p>
+        </div>
+      }
+
       <div className="input-container">
-        <label htmlFor="email">Enter your email</label>
+        <label htmlFor="email">{register ? "Email Address:" : "Enter your email"}</label>
         <input
           type="email"
           id="email"
           name="email"
           placeholder="john@example.com"
-          value={formData.email || ""}
+          value={formData?.email || ""}
           onChange={handleChange}
           autoComplete="on"
         />
-        <p className="error-text">{errors.email}</p>
+        <p className="error-message">{errors?.email}</p>
       </div>
 
       <div className="input-container">
-        <label htmlFor="password">Enter your password</label>
+        <label htmlFor="password">{register ? "Password:" : "Enter your password"}</label>
         <div className="relative">
           <input
             type={showPassword ? "text" : "password"}
@@ -55,11 +76,11 @@ const AuthForm = ({ handleSubmit }) => {
             name="password"
             placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
             onChange={handleChange}
-            value={formData.password || ""}
+            value={formData?.password || ""}
             autoComplete="on"
           />
 
-          {(formData.password || "").length > 0 && (
+          {(formData?.password || "").length > 0 && (
             <button
               type="button"
               className="absolute top-1/2 -translate-y-1/2 right-4 cursor-pointer"
@@ -71,7 +92,7 @@ const AuthForm = ({ handleSubmit }) => {
             </button>
           )}
         </div>
-        <p className="error-text">{errors.password}</p>
+        <p className="error-message">{errors?.password}</p>
       </div>
 
       <button className="btn text-lg px-5" type="submit" disabled={canSubmit}>
