@@ -7,5 +7,5 @@ export const store = configureStore({
     note: noteReducer,
     user: userReducer,
   },
-  devTools: true,
+  devTools: import.meta.env.VITE_NODE_ENV === "development",
 });
