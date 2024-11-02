@@ -4,12 +4,15 @@ import EditSidebar from "@/components/sidebar/EditSidebar.jsx";
 import Header from "@/components/header/Header.jsx";
 import { useSelector } from "react-redux";
 import { selectNoteById } from "@/features/note/noteSlice.js";
+import NotFound from "@/pages/NotFound.jsx";
 
 const NoteDetail = () => {
   const navigate = useNavigate();
   const { id: noteId } = useParams();
 
   const note = useSelector((state) => selectNoteById(state, noteId));
+  if (!note) return <NotFound />;
+
 
   return (
     <>

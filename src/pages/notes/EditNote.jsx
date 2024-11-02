@@ -6,6 +6,7 @@ import ErrorText from "@/components/common/ErrorText.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { selectNoteById } from "@/features/note/noteSlice.js";
 import { deleteNoteRequest, updateNoteRecord } from "@/features/note/noteThunks.js";
+import NotFound from "@/pages/NotFound.jsx";
 
 const EditNote = () => {
   const { id: noteId } = useParams();
@@ -13,10 +14,12 @@ const EditNote = () => {
   const dispatch = useDispatch();
 
   const note = useSelector((state) => selectNoteById(state, noteId));
+  if (!note) return <NotFound />;
 
   useEffect(() => {
     noteDispatch({ title: note?.title || "", body: note?.body || "" });
   }, [note]);
+
 
   const [noteState, noteDispatch] = useReducer(
     (state, action) => ({

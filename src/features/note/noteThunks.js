@@ -2,7 +2,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "@/api/axiosInstance.js";
 
 
-export const fetchNotesQuery = createAsyncThunk("notes/fetchAllNotes", async (_, { rejectWithValue }) => {
+export const fetchNotesQuery = createAsyncThunk("notes/fetchAllNotes", async (_, { getState, rejectWithValue }) => {
+  api.defaults.headers.common["Authorization"] = `Bearer ${getState().user?.token}`;
   try {
     const response = await api.get("/notes");
     return response.data;
@@ -29,7 +30,7 @@ export const deleteNoteRequest = createAsyncThunk("notes/deleteNote", async (not
   }
 });
 
-export const createNoteEntry = createAsyncThunk("notes/createNote", async (newNote, { rejectWithValue }) => {
+export const createNoteEntry = createAsyncThunk("notes/createNote", async (newNote, { getState, rejectWithValue }) => {
   try {
     const response = await api.post("/notes", newNote);
     return response.data;
