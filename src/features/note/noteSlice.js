@@ -14,8 +14,10 @@ const noteSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchNotesQuery.fulfilled, (state, action) => {
+        const notes = action.payload;
         state.status = "success";
-        state.notes = action.payload.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+        if (notes)
+          state.notes = notes.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
       })
       .addCase(fetchNotesQuery.pending, (state, action) => {
         state.status = "loading";

@@ -17,5 +17,13 @@ export const sendRegistrationRequest = createAsyncThunk("user/register", async (
   } catch (err) {
     return rejectWithValue(err.response?.data?.message || err.message);
   }
+});
 
+export const refreshAuthToken = createAsyncThunk("user/refresh", async (_, { rejectWithValue, dispatch }) => {
+  try {
+    const response = await api.post("/auth/refresh");
+    return response.data;
+  } catch (err) {
+    return rejectWithValue(err.response?.data?.message || err.message);
+  }
 });
