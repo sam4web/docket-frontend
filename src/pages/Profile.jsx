@@ -2,21 +2,42 @@ import formatDate from "@/utils/formatDate";
 import Sidebar from "@/components/sidebar/Sidebar.jsx";
 import Header from "@/components/header/Header.jsx";
 import Emoji from "@/components/common/Emoji.jsx";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectUserInfo } from "@/features/user/userSlice.js";
 import usePageTitle from "@/hooks/usePageTitle.js";
+import { sendLogoutRequest } from "@/features/user/userThunks.js";
+import { useNavigate } from "react-router-dom";
+import { clearAllNotes } from "@/features/note/noteSlice.js";
+import ErrorText from "@/components/common/ErrorText.jsx";
+import { useState } from "react";
 
 
 const Profile = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector(selectUserInfo);
+  const [error, setError] = useState(null);
   usePageTitle(`Hello, ${user?.username} | Docket`);
+
+  const logoutUser = async () => {
+    try {
+      await dispatch(sendLogoutRequest()).unwrap();
+      dispatch(clearAllNotes());
+      navigate("/login");
+    } catch (err) {
+      setError(err);
+    }
+
+  };
 
   return (
     <>
       <Sidebar />
       <div className="main-container">
         <Header iconsOnly />
+
         <section className="max-w-lg mx-auto space-y-6 pt-16 sm:pt-20 text-responsive text-center md:text-left text-lg">
+          {error && <ErrorText error={error} />}
           <h2 className="text-3xl md:text-4xl font-medium text-responsive text-left">
             Hello {user.username} <Emoji label={"wave"} symbol={"👋"} />
           </h2>
@@ -45,7 +66,7 @@ const Profile = () => {
             </div>
           </div>
 
-          <button onClick={() => console.log("Logged out")} className="btn text-lg px-5 py-2.5">
+          <button onClick={logoutUser} className="btn text-lg px-5 py-2.5">
             Logout
           </button>
         </section>

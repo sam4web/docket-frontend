@@ -8,6 +8,7 @@ import { sendLoginRequest } from "@/features/user/userThunks.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { selectCurrentToken } from "@/features/user/userSlice.js";
+import { fetchNotesQuery } from "@/features/note/noteThunks.js";
 
 const Login = () => {
   // clear the state when page loads
@@ -33,6 +34,7 @@ const Login = () => {
   const loginUser = async (credentials) => {
     try {
       await dispatch(sendLoginRequest(credentials)).unwrap();
+      await dispatch(fetchNotesQuery()).unwrap();
       navigate(state?.redirect || "/", { replace: true });
     } catch (err) {
       setError(err);

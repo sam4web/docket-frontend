@@ -28,3 +28,15 @@ export const refreshAuthToken = createAsyncThunk("user/refresh", async (_, { rej
   }
 });
 
+export const sendLogoutRequest = createAsyncThunk("user/logout", async (_, { getState, rejectWithValue }) => {
+  try {
+    const response = await api.post("/auth/logout", {}, {
+      headers: {
+        "Authorization": `Bearer ${getState().user?.token}`,
+      },
+    });
+    return response.data;
+  } catch (err) {
+    return rejectWithValue(err.response?.data?.message || err.message);
+  }
+});

@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { refreshAuthToken, sendLoginRequest, sendRegistrationRequest } from "@/features/user/userThunks.js";
+import {
+  refreshAuthToken,
+  sendLoginRequest,
+  sendLogoutRequest,
+  sendRegistrationRequest,
+} from "@/features/user/userThunks.js";
 import { userAuthReducer } from "@/features/user/userReducer.js";
 
 const initialState = {
@@ -15,7 +20,11 @@ export const userSlice = createSlice({
     builder
       .addCase(sendLoginRequest.fulfilled, userAuthReducer)
       .addCase(sendRegistrationRequest.fulfilled, userAuthReducer)
-      .addCase(refreshAuthToken.fulfilled, userAuthReducer);
+      .addCase(refreshAuthToken.fulfilled, userAuthReducer)
+      .addCase(sendLogoutRequest.fulfilled, (state, action) => {
+        state.user = null;
+        state.token = null;
+      });
   },
 });
 

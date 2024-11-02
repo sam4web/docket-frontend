@@ -10,7 +10,11 @@ const initialState = {
 const noteSlice = createSlice({
   name: "note",
   initialState,
-  reducers: {},
+  reducers: {
+    clearAllNotes(state) {
+      state.notes = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchNotesQuery.fulfilled, (state, action) => {
@@ -46,4 +50,5 @@ export const selectNoteById = (state, noteId) => state.note.notes.find(note => n
 export const getNoteStatus = (state) => state.note.status;
 export const getNoteError = (state) => state.note.error;
 
+export const { clearAllNotes } = noteSlice.actions;
 export default noteSlice.reducer;
