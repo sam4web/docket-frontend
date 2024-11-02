@@ -20,7 +20,7 @@ export const userSlice = createSlice({
 });
 
 
-export const getToken = (state) => state.user.token;
-export const getUserInfo = (state) => state.user.user;
+export const selectCurrentToken = (state) => state.user.token;
+export const selectUserInfo = (state) => state.user.user;
 
 export default userSlice.reducer;

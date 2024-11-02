@@ -7,7 +7,7 @@ import ErrorText from "@/components/common/ErrorText.jsx";
 import { sendLoginRequest } from "@/features/user/userThunks.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getToken } from "@/features/user/userSlice.js";
+import { selectCurrentToken } from "@/features/user/userSlice.js";
 
 const Login = () => {
   // clear the state when page loads
@@ -17,7 +17,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [error, setError] = useState(null);
-  const token = useSelector(getToken);
+  const token = useSelector(selectCurrentToken);
 
   usePageTitle(`${state?.error || "Welcome Back"} | Docket`);
 

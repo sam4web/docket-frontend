@@ -5,7 +5,7 @@ import Emoji from "@/components/common/Emoji.jsx";
 import AuthForm from "@/components/auth/AuthForm.jsx";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getToken } from "@/features/user/userSlice.js";
+import { selectCurrentToken } from "@/features/user/userSlice.js";
 import { sendRegistrationRequest } from "@/features/user/userThunks.js";
 import ErrorText from "@/components/common/ErrorText.jsx";
 
@@ -15,7 +15,7 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
-  const token = useSelector(getToken);
+  const token = useSelector(selectCurrentToken);
 
   if (token)
     return <Navigate to={"/"} replace={true} />;

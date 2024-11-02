@@ -3,14 +3,14 @@ import Sidebar from "@/components/sidebar/Sidebar.jsx";
 import Header from "@/components/header/Header.jsx";
 import Emoji from "@/components/common/Emoji.jsx";
 import { useSelector } from "react-redux";
-import { getUserInfo } from "@/features/user/userSlice.js";
+import { selectUserInfo } from "@/features/user/userSlice.js";
 import usePageTitle from "@/hooks/usePageTitle.js";
 
 
 const Profile = () => {
-  const user = useSelector(getUserInfo);
+  const user = useSelector(selectUserInfo);
   usePageTitle(`Hello, ${user?.username} | Docket`);
-  
+
   return (
     <>
       <Sidebar />

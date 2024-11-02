@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
-import { getToken, getUserInfo } from "@/features/user/userSlice.js";
+import { selectCurrentToken, selectUserInfo } from "@/features/user/userSlice.js";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 const AuthRequired = () => {
-  const token = useSelector(getToken);
-  const user = useSelector(getUserInfo);
+  const token = useSelector(selectCurrentToken);
+  const user = useSelector(selectUserInfo);
   const location = useLocation();
 
 

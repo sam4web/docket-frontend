@@ -4,13 +4,13 @@ import { useSelector } from "react-redux";
 import { getNoteError, getNoteStatus, selectAllNotes } from "@/features/note/noteSlice.js";
 import NoteItem from "@/components/note/NoteItem.jsx";
 import ErrorText from "@/components/common/ErrorText.jsx";
-import { getToken } from "@/features/user/userSlice.js";
+import { selectCurrentToken } from "@/features/user/userSlice.js";
 
 
 const NoteList = () => {
   const navigate = useNavigate();
 
-  const token = useSelector(getToken);
+  const token = useSelector(selectCurrentToken);
 
   const notes = useSelector(selectAllNotes);
   const status = useSelector(getNoteStatus);
