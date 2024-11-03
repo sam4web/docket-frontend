@@ -31,7 +31,7 @@
 
 
 .input-container {
-  @apply space-y-1;
+  @apply space-y-1.5;
 
   input {
     @apply bg-gray-50 border-2 border-gray-300 text-responsive rounded-md block w-full px-3 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:border-gray-300 focus:border-gray-700 outline-none shadow-sm font-medium focus:placeholder:text-transparent;

@@ -18,7 +18,7 @@ const NoteItem = ({ noteId }) => {
 
   return (
     <div
-      className="dark:bg-opacity-70 size-full min-h-64 rounded-md shadow-md"
+      className="size-full min-h-64 rounded-md shadow-md"
       style={{ backgroundColor: note.color }}
     >
       <div className="font-medium flex flex-col justify-between h-full p-5">

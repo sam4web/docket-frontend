@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUserInfo } from "@/features/user/userSlice.js";
 import usePageTitle from "@/hooks/usePageTitle.js";
 import { sendLogoutRequest } from "@/features/user/userThunks.js";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { clearAllNotes } from "@/features/note/noteSlice.js";
 import ErrorText from "@/components/common/ErrorText.jsx";
 import { useState } from "react";
@@ -27,7 +27,6 @@ const Profile = () => {
     } catch (err) {
       setError(err);
     }
-
   };
 
   return (
@@ -60,9 +59,12 @@ const Profile = () => {
             </div>
             <div className="flex-between">
               <p className="font-medium">Manage Account</p>
-              <p className="text-red-600 dark:text-red-500 cursor-pointer">
+              <Link
+                className="text-red-600 dark:text-red-500 cursor-pointer"
+                to={"/delete-user"}
+              >
                 Delete
-              </p>
+              </Link>
             </div>
           </div>
 

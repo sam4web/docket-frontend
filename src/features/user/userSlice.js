@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   refreshAuthToken,
+  sendDeleteUserRequest,
   sendLoginRequest,
   sendLogoutRequest,
   sendRegistrationRequest,
 } from "@/features/user/userThunks.js";
-import { userAuthReducer } from "@/features/user/userReducer.js";
+import { clearUserReducer, setUserReducer } from "@/features/user/userReducer.js";
 
 const initialState = {
   user: null,
@@ -18,13 +19,11 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(sendLoginRequest.fulfilled, userAuthReducer)
-      .addCase(sendRegistrationRequest.fulfilled, userAuthReducer)
-      .addCase(refreshAuthToken.fulfilled, userAuthReducer)
-      .addCase(sendLogoutRequest.fulfilled, (state, action) => {
-        state.user = null;
-        state.token = null;
-      });
+      .addCase(sendLoginRequest.fulfilled, setUserReducer)
+      .addCase(sendRegistrationRequest.fulfilled, setUserReducer)
+      .addCase(refreshAuthToken.fulfilled, setUserReducer)
+      .addCase(sendLogoutRequest.fulfilled, clearUserReducer)
+      .addCase(sendDeleteUserRequest.fulfilled, clearUserReducer);
   },
 });
 

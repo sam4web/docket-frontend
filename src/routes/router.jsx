@@ -8,6 +8,7 @@ import CreateNote from "@/pages/notes/CreateNote.jsx";
 import EditNote from "@/pages/notes/EditNote.jsx";
 import NoteDetail from "@/pages/notes/NoteDetail.jsx";
 import Profile from "@/pages/Profile.jsx";
+import DeleteUser from "@/pages/DeleteUser.jsx";
 import AuthRequired from "@/components/auth/AuthRequired.jsx";
 import AuthPersist from "@/components/auth/AuthPersist.jsx";
 
@@ -22,6 +23,7 @@ const router = createBrowserRouter(createRoutesFromElements(
         {/* protected routes */}
         <Route element={<AuthRequired />}>
           <Route path={"/profile"} element={<Profile />} />
+          <Route path={"/delete-user"} element={<DeleteUser />} />
           <Route path={"/notes"}>
             <Route index element={<Home />} />
             <Route path={":id"} element={<NoteDetail />} />

@@ -19,7 +19,7 @@ export const sendRegistrationRequest = createAsyncThunk("user/register", async (
   }
 });
 
-export const refreshAuthToken = createAsyncThunk("user/refresh", async (_, { rejectWithValue, dispatch }) => {
+export const refreshAuthToken = createAsyncThunk("user/refresh", async (_, { rejectWithValue }) => {
   try {
     const response = await api.post("/auth/refresh");
     return response.data;
@@ -30,11 +30,16 @@ export const refreshAuthToken = createAsyncThunk("user/refresh", async (_, { rej
 
 export const sendLogoutRequest = createAsyncThunk("user/logout", async (_, { getState, rejectWithValue }) => {
   try {
-    const response = await api.post("/auth/logout", {}, {
-      headers: {
-        "Authorization": `Bearer ${getState().user?.token}`,
-      },
-    });
+    const response = await api.post("/auth/logout");
+    return response.data;
+  } catch (err) {
+    return rejectWithValue(err.response?.data?.message || err.message);
+  }
+});
+
+export const sendDeleteUserRequest = createAsyncThunk("user/delete", async (password, { rejectWithValue }) => {
+  try {
+    const response = await api.post("/auth/delete-user", { password });
     return response.data;
   } catch (err) {
     return rejectWithValue(err.response?.data?.message || err.message);
