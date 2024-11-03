@@ -9,9 +9,6 @@ management.
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Usage](#usage)
-    - [Authentication](#authentication)
-    - [Notes Management](#notes-management)
 - [Links](#links)
 
 ## Features
@@ -29,23 +26,8 @@ management.
 - **[Redux](https://redux.js.org/)**: State management library for React.
 - **[React Router DOM](https://reactrouter.com/)**: Declarative routing for React apps.
 
-## Usage
-
-### Authentication
-
-- **Sign Up**: Create a new account by providing a username, email, and password.
-- **Log In**: Access your account by entering your email and password.
-- **Log Out**: Securely log out from your account.
-
-### Notes Management
-
-- **Create**: Click on the "Add Note" button to create a new note.
-- **Read**: View your notes on the main dashboard. Click on a note to read its details.
-- **Update**: Click on the "Edit" button while viewing a note to update its title or content.
-- **Delete**: Click on the "Delete" button to remove a note.
-
 ## Links
 
 - **Source Code**: [Frontend Repository](https://github.com/sam4web/docket-frontend)
-- **Live Preview**: [Docket Live]()
+- **Live Preview**: [Docket Live](https://projectdocket.netlify.app/)
 - **Backend Code**: [Backend Repository](https://github.com/sam4web/docket-backend)
