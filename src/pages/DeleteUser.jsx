@@ -7,6 +7,7 @@ import { sendDeleteUserRequest } from "@/features/user/userThunks.js";
 import { useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { validatePassword } from "@/utils/validateCredentials.js";
+import { clearAllNotes } from "@/features/note/noteSlice.js";
 
 const DeleteUser = () => {
   usePageTitle("Delete Account Confirmation | Docket");
@@ -32,6 +33,7 @@ const DeleteUser = () => {
     }
     try {
       await dispatch(sendDeleteUserRequest(password)).unwrap();
+      dispatch(clearAllNotes());
       navigate("/login");
     } catch (err) {
       setError(err);

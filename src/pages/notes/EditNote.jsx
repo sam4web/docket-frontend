@@ -4,8 +4,8 @@ import EditSidebar from "@/components/sidebar/EditSidebar.jsx";
 import Header from "@/components/header/Header.jsx";
 import ErrorText from "@/components/common/ErrorText.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { selectNoteById } from "@/features/note/noteSlice.js";
 import { deleteNoteRequest, updateNoteRecord } from "@/features/note/noteThunks.js";
+import { selectNoteById } from "@/features/note/noteSlice.js";
 import NotFound from "@/pages/NotFound.jsx";
 
 const EditNote = () => {
@@ -14,7 +14,6 @@ const EditNote = () => {
   const dispatch = useDispatch();
 
   const note = useSelector((state) => selectNoteById(state, noteId));
-  if (!note) return <NotFound />;
 
   useEffect(() => {
     noteDispatch({ title: note?.title || "", body: note?.body || "" });
@@ -28,6 +27,7 @@ const EditNote = () => {
     }),
     { title: "", body: "", error: "" },
   );
+
 
   const updateNote = async () => {
     try {
@@ -48,6 +48,8 @@ const EditNote = () => {
   };
 
 
+  if (!note) return <NotFound />;
+  
   return (
     <>
       <EditSidebar
