@@ -23,15 +23,15 @@ const NoteItem = ({ noteId }) => {
     >
       <div className="font-medium flex flex-col justify-between h-full p-5">
         <Link className="space-y-1.5" to={`/notes/${note._id}`}>
-          <h4 className="text-xl text-responsive">{note.title}</h4>
+          <h4 className="text-xl text-dark">{note.title}</h4>
           {note?.body &&
-            <p className="text-slate-900 dark:text-slate-200 whitespace-pre-line">
+            <p className="text-slate-900 whitespace-pre-line">
               {formatBody(note?.body || "")}
             </p>
           }
         </Link>
         <div className="flex-between">
-          <p className="text-slate-900 dark:text-slate-200">
+          <p className="text-slate-900">
             {formatDate(note.updatedAt)}
           </p>
           <button
