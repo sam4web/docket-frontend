@@ -19,13 +19,9 @@ export const sendRegistrationRequest = createAsyncThunk("user/register", async (
   }
 });
 
-export const refreshAuthToken = createAsyncThunk("user/refresh", async (_, { getState, rejectWithValue }) => {
+export const refreshAuthToken = createAsyncThunk("user/refresh", async (_, { rejectWithValue }) => {
   try {
-    const response = await api.post("/auth/refresh", {}, {
-      headers: {
-        Authorization: `Bearer ${getState().user?.token}`,
-      },
-    });
+    const response = await api.post("/auth/refresh");
     return response.data;
   } catch (err) {
     return rejectWithValue(err.response?.data?.message || err.message);
