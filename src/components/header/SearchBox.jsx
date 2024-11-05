@@ -3,8 +3,7 @@ import { useState } from "react";
 
 const SearchBox = () => {
   const [search, setSearch] = useState("");
-
-
+  
   return (
     <div
       className="sm:w-full max-w-xs border-2 shadow-sm px-3 py-2 rounded-lg flex-between space-x-2 group focus:border-dark hover:border-dark dark:border-grey dark:hover:border-light dark:focus:border-light">
