@@ -6,12 +6,14 @@ import Header from "@/components/header/Header.jsx";
 import { useDispatch } from "react-redux";
 import { createNoteEntry } from "@/features/note/noteThunks.js";
 import ErrorText from "@/components/common/ErrorText.jsx";
+import useToast from "@/hooks/useToast.js";
 
 const CreateNote = () => {
   usePageTitle("Add a Note | Docket");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { state } = useLocation();
+  const { showToast } = useToast();
 
   const [noteState, noteDispatch] = useReducer(
     (state, action) => ({
@@ -23,9 +25,12 @@ const CreateNote = () => {
 
   const handleSubmit = async () => {
     try {
+      showToast("message", "Creating note, Please wait...");
       const data = await dispatch(createNoteEntry(noteState)).unwrap();
       navigate(`/notes/${data._id}`);
+      showToast("success", "Note successfully created!", 2);
     } catch (err) {
+      showToast("error", err, 3);
       noteDispatch({ error: err });
     }
   };

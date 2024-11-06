@@ -6,11 +6,9 @@ import LogoText from "@/components/header/LogoText.jsx";
 
 const Sidebar = () => {
   const navigate = useNavigate();
-
   const [showColorVariants, setShowColorVariants] = useState(true);
   const toggleColorVariants = () => setShowColorVariants(prev => !prev);
-
-
+  
   const colorVariants = [
     "#ee9b00",
     "#f07167",

@@ -7,18 +7,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteNoteRequest, updateNoteRecord } from "@/features/note/noteThunks.js";
 import { selectNoteById } from "@/features/note/noteSlice.js";
 import NotFound from "@/pages/NotFound.jsx";
+import useToast from "@/hooks/useToast.js";
 
 const EditNote = () => {
   const { id: noteId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const { showToast } = useToast();
   const note = useSelector((state) => selectNoteById(state, noteId));
 
   useEffect(() => {
     noteDispatch({ title: note?.title || "", body: note?.body || "" });
   }, [note]);
-
 
   const [noteState, noteDispatch] = useReducer(
     (state, action) => ({
@@ -28,28 +28,33 @@ const EditNote = () => {
     { title: "", body: "", error: "" },
   );
 
-
   const updateNote = async () => {
     try {
+      showToast("message", "Updating note, Please wait...");
       await dispatch(updateNoteRecord({ ...noteState, id: noteId })).unwrap();
+      showToast("success", "Note successfully updated!", 2);
       navigate(`/notes/${noteId}`);
     } catch (err) {
+      showToast("error", err, 3);
       noteDispatch({ error: err });
     }
   };
 
   const deleteNote = async () => {
     try {
+      showToast("message", "Deleting note, Please wait...");
       await dispatch(deleteNoteRequest(noteId)).unwrap();
+      showToast("success", "Note successfully deleted!", 2);
       navigate("/");
     } catch (err) {
+      showToast("error", err, 3);
       noteDispatch({ error: err });
     }
   };
 
 
   if (!note) return <NotFound />;
-  
+
   return (
     <>
       <EditSidebar

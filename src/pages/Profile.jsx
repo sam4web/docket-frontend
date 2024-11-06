@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { clearAllNotes, selectAllNotes } from "@/features/note/noteSlice.js";
 import ErrorText from "@/components/common/ErrorText.jsx";
 import { useState } from "react";
+import useToast from "@/hooks/useToast.js";
 
 
 const Profile = () => {
@@ -18,14 +19,18 @@ const Profile = () => {
   const user = useSelector(selectUserInfo);
   const notes = useSelector(selectAllNotes);
   const [error, setError] = useState(null);
+  const { showToast } = useToast();
   usePageTitle(`Hello, ${user?.username} | Docket`);
 
   const logoutUser = async () => {
     try {
+      showToast("message", "Logging out, Please wait...");
       await dispatch(sendLogoutRequest()).unwrap();
       dispatch(clearAllNotes());
+      showToast("success", "Successfully logged out!", 2);
       navigate("/login");
     } catch (err) {
+      showToast("error", err, 3);
       setError(err);
     }
   };

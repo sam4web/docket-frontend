@@ -8,12 +8,14 @@ import { useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { validatePassword } from "@/utils/validateCredentials.js";
 import { clearAllNotes } from "@/features/note/noteSlice.js";
+import useToast from "@/hooks/useToast.js";
 
 const DeleteUser = () => {
   usePageTitle("Delete Account Confirmation | Docket");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { showToast } = useToast();
   const [error, setError] = useState(null);
   const [inputError, setInputError] = useState(null);
   const [password, setPassword] = useState("");
@@ -32,10 +34,13 @@ const DeleteUser = () => {
       return;
     }
     try {
+      showToast("message", "Deleting user, Please wait...");
       await dispatch(sendDeleteUserRequest(password)).unwrap();
       dispatch(clearAllNotes());
+      showToast("success", "User successfully deleted!", 2);
       navigate("/login");
     } catch (err) {
+      showToast("error", err, 3);
       setError(err);
     }
   };

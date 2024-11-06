@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentToken } from "@/features/user/userSlice.js";
 import { sendRegistrationRequest } from "@/features/user/userThunks.js";
 import ErrorText from "@/components/common/ErrorText.jsx";
+import useToast from "@/hooks/useToast.js";
 
 const Register = () => {
   usePageTitle("Create Your Account | Docket");
@@ -16,15 +17,19 @@ const Register = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
   const token = useSelector(selectCurrentToken);
+  const { showToast } = useToast();
 
   if (token)
     return <Navigate to={"/"} replace={true} />;
 
   const registerUser = async (credentials) => {
     try {
+      showToast("message", "Registering user, Please wait...");
       await dispatch(sendRegistrationRequest(credentials)).unwrap();
+      showToast("success", "User successfully registered!", 2);
       navigate("/");
     } catch (err) {
+      showToast("error", err, 3);
       setError(err);
     }
   };

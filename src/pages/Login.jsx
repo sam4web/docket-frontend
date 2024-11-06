@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { selectCurrentToken } from "@/features/user/userSlice.js";
 import { fetchNotesQuery } from "@/features/note/noteThunks.js";
+import useToast from "@/hooks/useToast.js";
 
 const Login = () => {
   // clear the state when page loads
@@ -16,27 +17,28 @@ const Login = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { showToast } = useToast();
   const { state } = useLocation();
   const [error, setError] = useState(null);
   const token = useSelector(selectCurrentToken);
-
   usePageTitle(`${state?.error || "Welcome Back"} | Docket`);
 
   useEffect(() => {
     if (state?.error) setError(state.error);
   }, [state]);
 
-
   if (token)
     return <Navigate to={"/"} replace={true} />;
 
-
   const loginUser = async (credentials) => {
     try {
+      showToast("message", "Logging in, Please wait...");
       await dispatch(sendLoginRequest(credentials)).unwrap();
       await dispatch(fetchNotesQuery()).unwrap();
+      showToast("success", "Successfully logged in!", 2);
       navigate(state?.redirect || "/", { replace: true });
     } catch (err) {
+      showToast("error", err, 3);
       setError(err);
     }
   };

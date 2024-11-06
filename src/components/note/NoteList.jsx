@@ -9,9 +9,7 @@ import { selectCurrentToken } from "@/features/user/userSlice.js";
 
 const NoteList = () => {
   const navigate = useNavigate();
-
   const token = useSelector(selectCurrentToken);
-
   const notes = useSelector(selectAllNotes);
   const status = useSelector(getNoteStatus);
   const error = useSelector(getNoteError);
@@ -38,7 +36,6 @@ const NoteList = () => {
     );
 
   if (status === "failed") return <ErrorText error={error} />;
-
 
   return (
     <section className="space-y-6">
