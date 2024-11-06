@@ -64,7 +64,7 @@ const Toast = () => {
       </div>
 
       <button
-        className="text-xl text-slate-800 absolute top-2 right-2"
+        className="text-xl text-responsive absolute top-2 right-2"
         onClick={() => dispatch(hideToast())}
       >
         <RxCross2 />
