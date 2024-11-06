@@ -7,7 +7,7 @@ import { selectUserInfo } from "@/features/user/userSlice.js";
 import usePageTitle from "@/hooks/usePageTitle.js";
 import { sendLogoutRequest } from "@/features/user/userThunks.js";
 import { useNavigate } from "react-router-dom";
-import { clearAllNotes, selectAllNotes } from "@/features/note/noteSlice.js";
+import { clearAllNotes, getNotesCount } from "@/features/note/noteSlice.js";
 import ErrorText from "@/components/common/ErrorText.jsx";
 import { useState } from "react";
 import useToast from "@/hooks/useToast.js";
@@ -17,7 +17,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector(selectUserInfo);
-  const notes = useSelector(selectAllNotes);
+  const noteCount = useSelector(getNotesCount);
   const [error, setError] = useState(null);
   const { showToast } = useToast();
   usePageTitle(`Hello, ${user?.username} | Docket`);
@@ -58,7 +58,7 @@ const Profile = () => {
             <div className="flex-between">
               <p className="font-medium">Notes Created</p>
               <p>
-                {notes.length}
+                {noteCount}
               </p>
             </div>
           </div>

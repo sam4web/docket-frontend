@@ -3,6 +3,8 @@ import { createNoteEntry, deleteNoteRequest, fetchNotesQuery, updateNoteRecord }
 
 const initialState = {
   notes: [],
+  searchedNotes: [],
+  searchQuery: "",
   status: "idle", // 'idle' | 'loading' | 'success' | 'failed'
   error: null,
 };
@@ -13,6 +15,12 @@ const noteSlice = createSlice({
   reducers: {
     clearAllNotes(state) {
       state.notes = [];
+      state.searchedNotes = [];
+    },
+    setSearchQuery: (state, action) => {
+      const searchInput = action.payload.toLowerCase();
+      state.searchQuery = searchInput;
+      state.searchedNotes = state.notes.filter((note) => note.title.toLowerCase().includes(searchInput));
     },
   },
   extraReducers: (builder) => {
@@ -45,10 +53,13 @@ const noteSlice = createSlice({
 });
 
 export const selectAllNotes = (state) => state.note.notes;
+export const selectSearchedNotes = (state) => state.note.searchedNotes;
+export const selectSearchQuery = (state) => state.note.searchQuery;
 export const selectNoteById = (state, noteId) => state.note.notes.find(note => note._id === noteId);
+export const getNotesCount = (state) => state.note.notes.length;
 
 export const getNoteStatus = (state) => state.note.status;
 export const getNoteError = (state) => state.note.error;
 
-export const { clearAllNotes } = noteSlice.actions;
+export const { clearAllNotes, setSearchQuery } = noteSlice.actions;
 export default noteSlice.reducer;

@@ -20,7 +20,12 @@ const CreateNote = () => {
       ...state,
       ...action,
     }),
-    { title: "", body: "", color: state?.color || "#8d99ae", error: "" },
+    {
+      title: state?.title || "",
+      body: "",
+      error: "",
+      color: state?.color || "#8d99ae",
+    },
   );
 
   const handleSubmit = async () => {

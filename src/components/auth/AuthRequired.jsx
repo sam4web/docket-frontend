@@ -11,12 +11,14 @@ const AuthRequired = () => {
 
   if (!token && !user) {
     showToast("error", "Please login before accessing this page.", 3);
-    return <Navigate
-      to={"/login"}
-      replace={true}
-      state={{ redirect: location.pathname, error: "Unauthorized" }} />;
+    return (
+      <Navigate
+        to={"/login"}
+        replace={true}
+        state={{ redirect: location.pathname, error: "Unauthorized" }}
+      />);
   }
-  
+
   return <Outlet />;
 };
 
