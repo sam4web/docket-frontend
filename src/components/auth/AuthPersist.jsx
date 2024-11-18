@@ -19,7 +19,6 @@ const AuthPersist = () => {
       await dispatch(fetchNotesQuery()).unwrap();
       dispatch(hideToast());
     } catch (err) {
-      showToast("error", err, 3);
     } finally {
       setSuccess(true);
     }
